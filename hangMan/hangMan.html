@@ -1,0 +1,53 @@
+<html>
+  <title>HANGMAN</title>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="hangMan.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+
+    <h1>HANGMAN</h1>
+
+    <h1 id=life>LIFE</h1>
+    <h2 id='result'></h2>
+    <button id='hint' onclick="giveHint()">HINT!!</button>
+
+    <div id='firstline'>
+      <button id='a' onclick="check(value)" value="a">a</button>
+      <button id='b' onclick="check(value)" value="b">b</button>
+      <button id='c' onclick="check(value)" value="c">c</button>
+      <button id='d' onclick="check(value)" value="d">d</button>
+      <button id='e' onclick="check(value)" value="e">e</button>
+      <button id='f' onclick="check(value)" value="f">f</button>
+      <button id='g' onclick="check(value)" value="g">g</button>
+      <button id='h' onclick="check(value)" value="h">h</button>
+      <button id='i' onclick="check(value)" value="i">i</button>
+      <button id='j' onclick="check(value)" value="j">j</button>
+      <button id='k' onclick="check(value)" value="k">k</button>
+      <button id='l' onclick="check(value)" value="l">l</button>
+      <button id='m' onclick="check(value)" value="m">m</button>
+    </div>
+    <div id='secondline'>
+      <button id='n' onclick="check(value)" value="n">n</button>
+      <button id='o' onclick="check(value)" value="o">o</button>
+      <button id='p' onclick="check(value)" value="p">p</button>
+      <button id='q' onclick="check(value)" value="q">q</button>
+      <button id='r' onclick="check(value)" value="r">r</button>
+      <button id='s' onclick="check(value)" value="s">s</button>
+      <button id='t' onclick="check(value)" value="t">t</button>
+      <button id='u' onclick="check(value)" value="u">u</button>
+      <button id='v' onclick="check(value)" value="v">v</button>
+      <button id='w' onclick="check(value)" value="w">w</button>
+      <button id='x' onclick="check(value)" value="x">x</button>
+      <button id='y' onclick="check(value)" value="y">y</button>
+      <button id='z' onclick="check(value)" value="z">z</button>
+    </div>
+
+    <h1 id=msg>GOOD LUCK!!!</h1>
+
+    <canvas id="img" width="640" height="480"></canvas>
+
+    <script src="./hangMan.js"></script>
+  </body>
+</html>
