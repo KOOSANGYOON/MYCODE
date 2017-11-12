@@ -1,8 +1,9 @@
+//Generate array and give value in each puzzle. (with innerHTML value)
 function generateArray(arr) {
   for (var i = 0; i < 4; i++) {
     arr[i] = [];
     for (var j = 0; j < 4; j++) {
-      if (i === 3 && j === 3) {
+      if (i === 3 && j === 3) {   //At first, arr[3][3] is "X"
         document.getElementById('n'+i+j).value = "X";
         arr[i][j] = document.getElementById('n'+i+j);
         document.getElementById('n'+i+j).innerHTML = document.getElementById('n'+i+j).value;
@@ -17,6 +18,7 @@ function generateArray(arr) {
   }
 }
 
+//If user click puzzle,
 function click(arr) {
   // arr.onclick = repeat;
   for (var i = 0; i < 4; i++) {
@@ -26,6 +28,9 @@ function click(arr) {
   }
 }
 
+//Search up, down, left, right.
+//If value "X" is in there, It will be suffled by function swapX/swapY
+//And change its style by makeXcolor
 function search() {
   var temp;
   var sliceName= [];
@@ -33,17 +38,22 @@ function search() {
   console.log(sliceName);
   var x = parseInt(sliceName[1]);
   var y = parseInt(sliceName[2]);
-  if (x > 0 && arr[x-1][y].innerHTML === "X"){
+  if (x > 0 && arr[x-1][y].innerHTML === "X"){    //up
     swapX(x, y, x - 1);
-  }else if (x < 3 && arr[x+1][y].innerHTML === "X") {
+    makeXcolor();
+  }else if (x < 3 && arr[x+1][y].innerHTML === "X") {   //down
     swapX(x, y, x + 1);
-  }else if (y > 0 && arr[x][y-1].innerHTML === "X") {
+    makeXcolor();
+  }else if (y > 0 && arr[x][y-1].innerHTML === "X") {   //left
     swapY(x, y, y - 1);
-  }else if (y < 3 && arr[x][y+1].innerHTML === "X"){
+    makeXcolor();
+  }else if (y < 3 && arr[x][y+1].innerHTML === "X"){    //right
     swapY(x, y, y + 1);
+    makeXcolor();
   }
 }
 
+//This is up & down swap function
 function swapX(x, y, x2) {
   var temp = arr[x][y].value;
   arr[x][y].value = arr[x2][y].value;
@@ -52,6 +62,7 @@ function swapX(x, y, x2) {
   arr[x2][y].innerHTML = arr[x2][y].value;
   countNum += 1;
 }
+//This is left & right swap function
 function swapY(x, y, y2) {
   var temp = arr[x][y].value;
   arr[x][y].value = arr[x][y2].value;
@@ -60,7 +71,24 @@ function swapY(x, y, y2) {
   arr[x][y2].innerHTML = arr[x][y2].value;
   countNum += 1;
 }
-
+//Change style
+//if value is "X", its color is same as back-ground-color
+function makeXcolor() {
+  for (var i = 0; i < 4; i++) {
+    for (var j = 0; j < 4; j++) {
+      if (document.getElementById('n'+i+j).value === 'X') {
+        document.getElementById('n'+i+j).style.background = '#2979FF';
+        document.getElementById('n'+i+j).style.color = '#2979FF';
+        document.getElementById('n'+i+j).style.border = 'dotted';
+      }else {
+        document.getElementById('n'+i+j).style.background = 'orange';
+        document.getElementById('n'+i+j).style.color = 'black';
+        document.getElementById('n'+i+j).style.border = 'solid';
+      }
+    }
+  }
+}
+//First swap to make a question
 function randomSwap(arr, x, y, count) {
   if (count <= 0) {
     return;
@@ -80,7 +108,7 @@ function randomSwap(arr, x, y, count) {
     }
   }
 }
-
+//Choose direction to swap
 function chooseSwapPos(x, y) {
   var posNum = parseInt(Math.ceil(Math.random() * 4));
   if (posNum === 1) {   //UP
@@ -110,27 +138,16 @@ function chooseSwapPos(x, y) {
   }
 }
 
+//-------------------MAIN START----------------------
 var arr = [];
 
 generateArray(arr);
 
-var countNum = 0;
+var countNum;
 var resultStr = document.getElementById(moveNum);
 resultStr = countNum;
 
 randomSwap(arr, 3, 3, 100);
+countNum = 0;
 click(arr);
-
-
-
-// #n33 {
-//   color: #2979FF;
-//   background-color: #2979FF;
-//   display: inline-block;
-//   font-size: 80px;
-//   text-align: center;
-//   height: 80px;
-//   width: 80px;
-//   border: solid #222;
-//   border-width: 0px;
-// }
+makeXcolor();
