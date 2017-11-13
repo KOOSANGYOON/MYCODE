@@ -61,6 +61,7 @@ function swapX(x, y, x2) {
   arr[x][y].innerHTML = arr[x][y].value;
   arr[x2][y].innerHTML = arr[x2][y].value;
   countNum += 1;
+  document.getElementById("moveNum").innerHTML = countNum;
 }
 //This is left & right swap function
 function swapY(x, y, y2) {
@@ -70,6 +71,7 @@ function swapY(x, y, y2) {
   arr[x][y].innerHTML = arr[x][y].value;
   arr[x][y2].innerHTML = arr[x][y2].value;
   countNum += 1;
+  document.getElementById("moveNum").innerHTML = countNum;
 }
 //Change style
 //if value is "X", its color is same as back-ground-color
@@ -144,10 +146,10 @@ var arr = [];
 generateArray(arr);
 
 var countNum;
-var resultStr = document.getElementById(moveNum);
 resultStr = countNum;
 
 randomSwap(arr, 3, 3, 100);
 countNum = 0;
+document.getElementById("moveNum").innerHTML = countNum;
 click(arr);
 makeXcolor();
